@@ -1,0 +1,368 @@
+/* 1. VARIABLES (:root) */
+/* Aquí definimos nuestra paleta de colores y fuentes.
+   Es como preparar los ingredientes antes de cocinar. */
+:root {
+    /* Colores primarios del diseño */
+    --primary-red: hsl(356, 100%, 66%);        /* Rojo claro del botón */
+    --primary-dark-red: hsl(355, 100%, 74%);   /* Para el degradado */
+    --headings-blue: hsl(208, 49%, 24%);       /* Color azul oscuro para títulos */
+    --text-body: hsl(207, 13%, 34%);           /* Color grisáceo para párrafos */
+    --footer-bg: hsl(240, 10%, 16%);           /* Fondo casi negro del footer */
+    --white: #ffffff;
+
+    /* Degradado del fondo (Rojo a rosado) */
+    --bg-gradient: linear-gradient(to right, hsl(13, 100%, 72%), hsl(353, 100%, 62%));
+
+    /* Fuentes */
+    --font-main: 'Overpass', sans-serif;   /* Para texto normal */
+    --font-heading: 'Ubuntu', sans-serif;  /* Para títulos */
+}
+
+/* 2. RESET UNIVERSAL */
+/* Esto es OBLIGATORIO para que la página se vea igual en Chrome, Firefox, etc. */
+* {
+    margin: 0;
+    padding: 0;
+    /* box-sizing: border-box es VITAL. 
+       Hace que el padding no aumente el ancho de tus cajas. */
+    box-sizing: border-box; 
+}
+
+/* 3. ESTILOS GENERALES DEL BODY */
+body {
+    font-family: var(--font-main); /* Usamos la variable de fuente */
+    color: var(--text-body);       /* Usamos la variable de color */
+    font-size: 16px;
+    line-height: 1.6;              /* Espaciado entre líneas para que se lea bien */
+    overflow-x: hidden;            /* Evita scroll horizontal accidental */
+}
+
+/* 4. CLASES DE UTILIDAD */
+/* .container es una clase estándar para centrar el contenido y que no pegue a los bordes */
+.container {
+    max-width: 1100px; /* Ancho máximo del contenido */
+    margin: 0 auto;    /* 0 arriba/abajo, auto a los lados (CENTRA EL BLOQUE) */
+    padding: 0 20px;   /* Un poco de aire a los lados en pantallas pequeñas */
+}
+
+/* Quitamos los puntos de las listas y subrayado de enlaces por defecto */
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit; /* Hereda el color del padre, no el azul feo por defecto */
+}
+
+/* --- HEADER PRINCIPAL --- */
+.main-header {
+    background: var(--bg-gradient); /* Degradado rojo */
+    color: var(--white);            /* Texto blanco */
+    
+    /* CURVA DE DISEÑO: Esquina inferior izquierda redonda */
+    border-bottom-left-radius: 100px;
+    
+    padding-top: 3rem;
+    padding-bottom: 8rem; 
+    position: relative;
+}
+
+/* --- BARRA DE NAVEGACIÓN (FLEXBOX) --- */
+.navbar {
+    display: flex;              /* Activa Flexbox */
+    justify-content: space-between; /* Espacio entre elementos extremos */
+    align-items: center;        /* Alineación vertical al centro */
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-right: 3rem;
+}
+
+/* Lista de enlaces (Product, Company...) */
+.nav-links {
+    display: flex; /* Items lado a lado */
+    gap: 30px;     /* Espacio entre items */
+    font-family: var(--font-heading);
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Menú hamburguesa (invisible en PC) */
+.hamburger-menu {
+    display: none; 
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+/* --- HERO SECTION (TEXTO CENTRADO) --- */
+.hero {
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.hero h1 {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* --- BOTONES --- */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-family: var(--font-heading);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-white {
+    background-color: var(--white);
+    color: var(--primary-red);
+}
+
+/* Hover: efecto al pasar el mouse */
+.btn-white:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: var(--white);
+}
+
+.btn-outline {
+    border: 1px solid var(--white);
+    color: var(--white);
+    margin-left: 10px;
+}
+
+.btn-outline:hover {
+    background-color: var(--white);
+    color: var(--primary-red);
+}
+
+.btn-text {
+    margin-right: 20px;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+/* --- TÍTULOS DE SECCIÓN --- */
+.section-title {
+    text-align: center;         /* Centrado horizontal */
+    margin-top: 4rem;           /* Espacio arriba */
+    margin-bottom: 3rem;        /* Espacio abajo */
+    font-family: var(--font-heading);
+    color: var(--headings-blue);
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+/* --- GRID DE CARACTERÍSTICAS (Texto vs Imagen) --- */
+/* Esta clase controla las secciones blancas (Editor y Laptop) */
+.feature-section {
+    display: grid;              /* Activamos el modo Grid */
+    /* LA CLAVE: Definimos 2 columnas de igual tamaño (1 fracción, 1 fracción) */
+    grid-template-columns: 1fr 1fr; 
+    gap: 4rem;                  /* Espacio entre columnas */
+    align-items: center;        /* Centrar verticalmente el contenido */
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+/* Estilos para el texto dentro de las características */
+.feature-text h3 {
+    font-family: var(--font-heading);
+    color: var(--headings-blue);
+    font-size: 1.7rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem; /* Separar del párrafo anterior */
+}
+
+.feature-text p {
+    margin-bottom: 1rem;
+    color: var(--text-body);
+}
+
+/* Asegurar que las imágenes no se salgan de su celda */
+.feature-image img {
+    width: 100%;    /* Obliga a la imagen a medir el ancho de su PADRE */
+    height: auto;   /* Mantiene la proporción (no se deforma) */
+    display: block; /* Convertimos la imagen en un bloque sólido */
+}
+
+/* --- SECCIÓN INFRAESTRUCTURA (La franja oscura) --- */
+.infrastructure {
+    background: linear-gradient(to right, hsl(237, 17%, 21%), hsl(237, 23%, 32%));
+    color: var(--white);        /* Texto blanco */
+    
+    /* Curvas de diseño (opuestas al header) */
+    border-top-right-radius: 100px;
+    border-bottom-left-radius: 100px;
+    
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    padding: 2rem 0;            /* Relleno interior arriba/abajo */
+    
+    /* Posición relativa por si queremos poner un fondo decorativo después */
+    position: relative; 
+    overflow: hidden; /* Corta cualquier imagen que se salga de las curvas */
+}
+
+/* Grid específico para la infraestructura */
+.infra-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* También 2 columnas */
+    align-items: center;
+    gap: 3rem;
+}
+
+.infra-text h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-heading);
+}
+
+.infra-text p {
+    opacity: 0.8; /* Texto blanco un poco transparente */
+    font-size: 1.1rem;
+}
+
+/* --- FOOTER --- */
+.main-footer {
+    background-color: var(--footer-bg); /* Negro casi total */
+    color: #c9c9c9; /* Texto gris claro */
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    
+    /* Curva solo arriba a la derecha */
+    border-top-right-radius: 100px;
+}
+
+/* El Grid de 4 Columnas */
+.footer-grid {
+    display: grid;
+    /* 4 columnas iguales */
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    gap: 2rem;
+}
+
+.footer-logo-col .logo {
+    font-size: 2.5rem;
+    color: var(--white);
+    margin-bottom: 1.5rem;
+}
+
+/* Estilos de los títulos de columnas (h4) */
+.footer-col h4 {
+    color: var(--white);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+/* Estilos de las listas del footer */
+.footer-col ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-col a:hover {
+    color: var(--primary-red);
+    text-decoration: underline;
+}
+
+/* Texto pequeño de abajo */
+.attribution {
+    text-align: center;
+    font-size: 0.8rem;
+    margin-top: 3rem;
+    opacity: 0.5;
+}
+
+/* =========================================
+   MEDIA QUERIES (CORREGIDO Y AJUSTADO)
+   ========================================= */
+
+/* 1. ESCRITORIO PEQUEÑO (<= 1024px) */
+@media screen and (max-width: 1024px) {
+    .container { padding: 0 40px; }
+    .hero h1 { font-size: 3rem; }
+    .feature-section, .infra-grid { gap: 2rem; }
+}
+
+/* 2. TABLET (<= 768px) - AQUÍ hacemos el gran cambio ahora */
+@media screen and (max-width: 768px) {
+    
+    /* --- ARREGLO DEL MENÚ --- */
+    /* A partir de Tablet, ya ocultamos el menú normal porque no cabe */
+    .nav-links, .nav-buttons {
+        display: none;
+    }
+    
+    .hamburger-menu {
+        display: block; /* Activamos hamburguesa */
+        position: absolute;
+        right: 30px;
+        top: 25px;
+    }
+
+    /* Ajustes generales de Tablet */
+    .feature-section, .infra-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .feature-image {
+        order: -1;
+        margin: 0 auto;
+        max-width: 80%;
+    }
+
+    /* Footer a 2 columnas */
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        text-align: center; /* Centramos para que se vea mejor */
+    }
+    
+    .footer-logo-col { grid-column: 1 / -1; }
+}
+
+/* 3. CELULAR (<= 480px) */
+@media screen and (max-width: 480px) {
+    
+    .hero { padding: 0 1.5rem; }
+    .hero h1 { font-size: 2rem; }
+
+    /* Footer a 1 columna */
+    .footer-grid { grid-template-columns: 1fr; }
+
+    .main-header { border-bottom-left-radius: 50px; padding-bottom: 5rem; }
+    .infrastructure { border-top-right-radius: 50px; border-bottom-left-radius: 50px; }
+
+    /* --- ARREGLO DEL TÍTULO OSCURO --- */
+    .infra-text h2 {
+        font-size: 1.8rem; /* Reducimos la fuente bastante */
+        line-height: 1.2;
+        padding: 0 10px;   /* Un poco de margen interno para que no pegue al borde */
+    }
+}
+
+/* 4. PANTALLAS MINI (<= 320px) - Seguridad extra */
+@media screen and (max-width: 320px) {
+    .hero h1 { font-size: 1.7rem; }
+    .infra-text h2 { font-size: 1.5rem; } /* Más pequeño aún */
+    .container { padding: 0 15px; } /* Aprovechar cada pixel */
+}
